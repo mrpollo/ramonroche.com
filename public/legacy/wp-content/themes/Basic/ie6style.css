@@ -1,0 +1,7 @@
+.nav li li { width: 240px; }
+.nav li ul { width: 240px; }
+#pages ul li a:hover { background-image: none; }
+.nav li ul { border: none; }
+.commentlist { margin: 0px 0px 0px 0px; width: 652px !important; overflow: hidden; }
+.commentlist .children li { width: 85% !important; }
+.adwrap { margin-left: 27px; float: left; }

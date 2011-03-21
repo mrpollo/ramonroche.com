@@ -1,0 +1,57 @@
+/* CSS Document */
+
+.wp-pagenavi {
+	margin-bottom: 15px;
+}
+.wp-pagenavi a, .wp-pagenavi a:link {
+	padding: 2px 4px 2px 4px;
+	margin: 2px;
+	text-decoration: none;
+	border: 1px solid #dfdfdf;
+	color: #000;
+	background-color: #FFF;
+}
+.wp-pagenavi a:visited {
+	padding: 2px 4px 2px 4px;
+	margin: 2px;
+	text-decoration: none;
+	border: 1px solid #dfdfdf;
+	color: #000;
+	background-color: #FFF;
+}
+.wp-pagenavi a:hover {
+	border: 1px solid #fb1515;
+	color: #FFF;
+	background-color: #e81d1d;
+}
+.wp-pagenavi a:active {
+	padding: 2px 4px 2px 4px;
+	margin: 2px;
+	text-decoration: none;
+	border: 1px solid #dfdfdf;
+	color: #FFF;
+	background-color: #FFF;
+}
+.wp-pagenavi span.pages {
+	padding: 2px 4px 2px 4px;
+	margin: 2px 2px 2px 2px;
+	color: #000000;
+	border: 1px solid #dfdfdf;
+	color: #000;
+	background-color: #FFF;
+}
+.wp-pagenavi span.current {
+	padding: 2px 4px 2px 4px;
+	margin: 2px;
+	font-weight: bold;
+	border: 1px solid #fb1515;
+	color: #FFF;
+	background-color: #e81d1d;
+}
+.wp-pagenavi span.extend {
+	padding: 2px 4px 2px 4px;
+	margin: 2px;
+	border: 1px solid #fb1515;
+	color: #000;
+	background-color: #e81d1d;
+}

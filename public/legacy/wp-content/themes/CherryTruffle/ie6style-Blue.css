@@ -1,0 +1,12 @@
+.nav ul { background-image: none; padding-bottom: 0px; width: 220px !important; }
+.sidebar-box-title { margin-left: -15px; position: relative; }
+#sidebar { margin-right: 0px; overflow: hidden; }
+#slogan { margin-top: -15px; }
+.adwrap { margin-left: 14px; }
+#pages ul { height: 67px; display: block; position: absolute; margin: -30px auto 20px auto; }
+#nav2 li:hover ul, ul#nav2 li.sfHover ul { top:82px; width: 180px !important; padding: 0px; }
+#container, #container2 { margin-top: 0px; }
+#pages ul li a:hover, #pages ul li:hover a:link, #pages ul li:hover a:visited { background-image: url(images/button-right-ie6.gif); }
+#pages .home a:link, #pages .home a:visited, #pages .current_page_item a:link, #pages .current_page_item a:visited { background-image: url(images/button-hover-right-ie6.gif); }
+#pages ul li a:link, #pages ul li a:visited, #pages ul li a:active { background-image: url(images/button-right-ie6.gif); }
+#header { background-image: url(images/header-bg-Blue-ie6.png); background-position: 0px 36px; background-repeat: repeat-x; }

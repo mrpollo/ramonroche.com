@@ -1,0 +1,1 @@
+<a href="<?php echo (get_option('cherrytruffle_myspace_url')); ?>"><img src="<?php bloginfo('stylesheet_directory'); ?>/images/icon-myspace.png" alt="rss" class="icon" /></a>

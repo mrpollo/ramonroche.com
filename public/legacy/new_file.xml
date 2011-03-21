@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nowplaying>
+    <sched_time>
+        15413000
+    </sched_time>
+    <air_time>
+        15405000
+    </air_time>
+    <stack_pos>
+    </stack_pos>
+    <title>
+        Bandages
+    </title>
+    <artist>
+        Hot Hot Heat
+    </artist>
+    <trivia>
+        Make Up the Breakdown
+    </trivia>
+    <category>
+        ALT
+    </category>
+    <cart>
+        1188
+    </cart>
+    <intro>
+        300
+    </intro>
+    <end>
+    </end>
+    <station>
+        X1-ALT
+    </station>
+    <duration>
+        216642
+    </duration>
+    <media_type>
+        SONG
+    </media_type>
+    <milliseconds_left>
+    </milliseconds_left>
+</nowplaying>

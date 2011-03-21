@@ -1,0 +1,197 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: CherryTruffle 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-01-03 22:30+0600\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Ann <anochka1985@gmail.com>\n"
+"Language-Team: Ann <anochka1985@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UNITED STATES\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: ..\n"
+
+#: ../404.php:5
+msgid "Sorry, the page your requested could not be found, or no longer exists."
+msgstr "Disculpe, la página que solicita no puede ser encontrada, o ya no existe"
+
+#: ../comments.php:13
+msgid "This post is password protected. Enter the password to view comments."
+msgstr "Este artículo está protegido por clave. Usar la clave pare ver los comentarios."
+
+#: ../comments.php:20
+msgid "No Responses"
+msgstr "Sin respuestas"
+
+#: ../comments.php:20
+msgid "One Response"
+msgstr "Una respuesta"
+
+#: ../comments.php:20
+msgid "% Responses"
+msgstr "% Respuestas"
+
+#: ../comments.php:20
+msgid "to &#8220;"
+msgstr "a &#8220;"
+
+#: ../comments.php:46
+msgid "Comments are closed."
+msgstr "Se ha cerrado los comentarios"
+
+#: ../comments.php:52
+msgid "Leave a Reply"
+msgstr "Dejar una respuesta"
+
+#: ../comments.php:52
+#, php-format
+msgid "Leave a Reply to %s"
+msgstr "Dejar una respuesta a %s"
+
+#: ../comments.php:58
+msgid "You must be"
+msgstr "Debes ser"
+
+#: ../comments.php:58
+msgid "logged in"
+msgstr "Alojarse"
+
+#: ../comments.php:58
+msgid "to post a comment."
+msgstr "para enviar un comentario."
+
+#: ../comments.php:62
+msgid "Logged in as"
+msgstr "Alojado como"
+
+#: ../comments.php:62
+msgid "Log out &raquo;"
+msgstr "Desconectado &raquo;"
+
+#: ../comments.php:66
+msgid "Name"
+msgstr "Nombre"
+
+#: ../comments.php:67
+#: ../comments.php:73
+msgid "(required)"
+msgstr "(obligatorio)"
+
+#: ../comments.php:72
+msgid "Mail (will not be published)"
+msgstr "Correo (no será publicado)"
+
+#: ../comments.php:78
+msgid "Website"
+msgstr "Sitio Web"
+
+#: ../comments.php:86
+msgid "Submit Comment"
+msgstr "Enviar un Comentario"
+
+#: ../footer.php:9
+msgid "Powered by"
+msgstr "Creado con"
+
+#: ../footer.php:9
+msgid "Designed by"
+msgstr "Diseñado por"
+
+#: ../header.php:77
+#: ../header.php:134
+msgid "Home"
+msgstr "Inicio"
+
+#: ../page.php:9
+#: ../page.php:18
+#: ../single.php:9
+#: ../single.php:22
+#, php-format
+msgid "Permanent Link to %s"
+msgstr "Enlace permanente a %s"
+
+#: ../page.php:38
+#: ../single.php:44
+msgid "No Results Found"
+msgstr "No se han encontrado resultados."
+
+#: ../page.php:39
+#: ../single.php:45
+msgid "The page you requested could not be found. Try refining your search, or use the navigation above to locate the post."
+msgstr "La página que solicita no puede ser encontrada. Intenta redefinir la búsqueda, o usar la navegación para localizar el artículo."
+
+#: ../searchform.php:4
+msgid "Search"
+msgstr "Buscar"
+
+#: ../single.php:13
+msgid "Posted"
+msgstr "Enviado"
+
+#: ../single.php:13
+msgid "by"
+msgstr "por"
+
+#: ../single.php:13
+msgid "on"
+msgstr "sobre "
+
+#: ../single.php:13
+msgid "in"
+msgstr "en"
+
+#: ../single.php:13
+msgid "0 comments"
+msgstr "0 comentarios"
+
+#: ../single.php:13
+msgid "1 comment"
+msgstr "1 comentario"
+
+#: ../single.php:13
+msgid "comments"
+msgstr "comentarios"
+
+#: ../includes/blogstyle.php:57
+#: ../includes/blogstylecat.php:33
+#: ../includes/default.php:74
+#: ../includes/defaultcat.php:54
+msgid "&laquo; Previous Entries"
+msgstr "&laquo; Entradas previas"
+
+#: ../includes/blogstyle.php:58
+#: ../includes/blogstylecat.php:34
+#: ../includes/default.php:75
+#: ../includes/defaultcat.php:55
+msgid "Next Entries &raquo;"
+msgstr "Read the rest of this entry &raquo;"
+
+#: ../includes/blogstylecat.php:4
+#: ../includes/defaultcat.php:6
+msgid "Currently Browsing: "
+msgstr "Viendo actualmente:"
+
+#: ../includes/functions/comments.php:12
+#, php-format
+msgid "<cite class=\"fn\">%s</cite> <span class=\"says\">says:</span>"
+msgstr "<cite class=\"fn\">%s</cite> <span class=\"says\">dice:</span>"
+
+#: ../includes/functions/comments.php:13
+#, php-format
+msgid "%1$s at %2$s"
+msgstr "%1$s en %2$s"
+
+#: ../includes/functions/comments.php:13
+msgid "(Edit)"
+msgstr "(Editar)"
+
+#: ../includes/functions/comments.php:17
+msgid "Your comment is awaiting moderation."
+msgstr "Tu comentario está esperando ser moderado."
+

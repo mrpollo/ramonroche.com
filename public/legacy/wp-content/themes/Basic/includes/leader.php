@@ -1,0 +1,1 @@
+﻿<div style="float: left; margin-top: 18px;"> <a href="<?php echo $artsee_banner_leader_url; ?>"><img src="<?php echo $artsee_banner_leader_image; ?>" style="border: none;" alt="advertisement" /></a> </div>
