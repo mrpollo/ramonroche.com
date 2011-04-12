@@ -29,7 +29,7 @@
 </script>
 
 <div id="footer">
-	&copy; <?php bloginfo('name'); _e(date('Y').'. All rights reserved. ','Basic'); ?> <?php _e('Powered by ','Basic'); ?> <a href="http://www.wordpress.org">Wordpress</a> | <?php _e('Designed by ','Basic'); ?> <a href="http://www.elegantthemes.com">Elegant Themes</a>
+	&copy; <?php bloginfo('name'); _e(' '.date('Y').'. All rights reserved. ','Basic'); ?> <?php _e('Powered by ','Basic'); ?> <a href="http://www.wordpress.org">Wordpress</a> | <?php _e('Designed by ','Basic'); ?> <a href="http://www.elegantthemes.com">Elegant Themes</a>
 </div>
 <?php
 	if (get_option('basic_integration_body') <> '' && get_option('basic_integrate_body_enable') == 'on'){
