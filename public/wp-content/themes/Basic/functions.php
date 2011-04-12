@@ -12,9 +12,11 @@ if ((substr($GLOBALS['wp_version'],0,3)) >= 2.8) {
 }
 */
 wp_deregister_script('jquery');
-wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js', false, '1.5.2');
 wp_deregister_script('jqueryui');
+wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js', false, '1.5.2');
 wp_register_script('jqueryui', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js', false, '1.5.2');
+wp_enqueue_script('jquery');
+wp_enqueue_script('jqueryui');
 
 $themename 		= "Basic";
 $shortname 		= "basic";
