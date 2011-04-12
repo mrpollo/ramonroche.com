@@ -1,33 +1,37 @@
-<?php 
-
+<?php
 require_once(TEMPLATEPATH . '/includes/functions/custom_functions.php'); 
-
 require_once(TEMPLATEPATH . '/includes/functions/sidebars.php'); 
-
 load_theme_textdomain('Basic',get_template_directory().'/lang');
 
-if ((substr($GLOBALS['wp_version'],0,3)) >= 2.8) { wp_enqueue_script('jquery'); }
-else { wp_deregister_script('jquery');
-wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js', false, '1.3.2'); }
+/*
+if ((substr($GLOBALS['wp_version'],0,3)) >= 2.8) {
+	wp_enqueue_script('jquery');
+} else {
+	wp_deregister_script('jquery');
+	wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js', false, '1.3.2');
+}
+*/
+wp_deregister_script('jquery');
+wp_deregister_script('jqueryui');
+wp_register_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js', false, '1.5.2');
+wp_register_script('jqueryui', '//ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js', false, '1.5.2');
 
-$themename = "Basic";
-$shortname = "basic";
+$themename 		= "Basic";
+$shortname 		= "basic";
 
-$cats_array = get_categories('hide_empty=0');
-$pages_array = get_pages('hide_empty=0');
-$site_pages = array();
-$site_cats = array();
+$cats_array 	= get_categories('hide_empty=0');
+$pages_array 	= get_pages('hide_empty=0');
+$site_pages 	= array();
+$site_cats 		= array();
 
-foreach ($pages_array as $pagg) {
+foreach( $pages_array as $pagg ) {
 	$site_pages[$pagg->ID] = htmlspecialchars($pagg->post_title);
 	$pages_ids[] = $pagg->ID;
 }
-
-foreach ($cats_array as $categs) {
+foreach( $cats_array as $categs ) {
 	$site_cats[$categs->cat_ID] = $categs->cat_name;
 	$cats_ids[] = $categs->cat_ID;
 }
-
 $options = array (
 
 	array( "name" => "wrap-general",

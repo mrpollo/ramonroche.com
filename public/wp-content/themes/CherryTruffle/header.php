@@ -1,14 +1,22 @@
-<?php global $cherrytruffle_homepage_posts, $cherrytruffle_catnum_posts, $cherrytruffle_grab_image; ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes(); ?>>
-<head profile="http://gmpg.org/xfn/11">
+<?php
+global $cherrytruffle_homepage_posts, $cherrytruffle_catnum_posts, $cherrytruffle_grab_image;
+?>
+<!doctype html> 
+<!--[if lt IE 7 ]> 				<html class="no-js ie ie6"> <![endif]--> 
+<!--[if IE 7 ]>    				<html class="no-js ie ie7"> <![endif]--> 
+<!--[if IE 8 ]>    				<html class="no-js ie ie8"> <![endif]--> 
+<!--[if (gte IE 9)|!(IE)]><!-->	<html class="no-js"> 		<!--<![endif]-->
 <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
 <title><?php elegant_titles(); ?></title>
-<?php elegant_description(); ?> 
-<?php elegant_keywords(); ?> 
-<?php elegant_canonical(); ?>
-<?php if ( is_singular() ) wp_enqueue_script( 'comment-reply' ); ?>
-<?php wp_head(); ?>
+<?php 
+	elegant_description();
+	elegant_keywords();
+	elegant_canonical();
+	if ( is_singular() ){
+		wp_enqueue_script( 'comment-reply' );
+	}
+	wp_head();
+?>
 <link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/style-<?php echo(get_option('cherrytruffle_color_scheme'));?>.css" type="text/css" media="screen" />
 <link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> RSS Feed" href="<?php bloginfo('rss2_url'); ?>" />
 <link rel="alternate" type="application/atom+xml" title="<?php bloginfo('name'); ?> Atom Feed" href="<?php bloginfo('atom_url'); ?>" />
@@ -20,40 +28,37 @@
 <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo('stylesheet_directory'); ?>/ie6style-<?php echo(get_option('cherrytruffle_color_scheme'));?>.css" />
 <script defer type="text/javascript" src="<?php bloginfo('template_directory'); ?>/js/pngfix.js"></script>
 <![endif]-->
-<?php if (get_option('cherrytruffle_child_css') == 'on') { //Enable child stylesheet  ?>
-<link rel="stylesheet" href="<?php echo(get_option('cherrytruffle_child_cssurl')); ?>" type="text/css" media="screen" />
-<?php }; ?>
-
-<?php if (get_option('cherrytruffle_custom_colors') == 'on') { //Enable custom colors  ?>
-<style type="text/css">
-	body { color: #<?php echo(get_option('cherrytruffle_color_mainfont')); ?> !important; }
-	a:link, a:visited { color: #<?php echo(get_option('cherrytruffle_color_mainlink')); ?> !important; }
-	#pages li a, .current_page_item a, .home-link a { color: #<?php echo(get_option('cherrytruffle_color_pagelink')); ?> !important; }
-	#pages li a:hover { color: #<?php echo(get_option('cherrytruffle_color_pagelink_hover')); ?>!important; }
-	#categories li a, .current_page_item a, .home-link a { color: #<?php echo(get_option('cherrytruffle_color_catlink')); ?> !important; }
-	#categories li a:hover { color: #<?php echo(get_option('cherrytruffle_color_catlink_hover')); ?>!important; }
-	#slogan { color: #<?php echo(get_option('cherrytruffle_color_slogan')); ?> !important; }
-	.titles2 a, .titles a { color:#<?php echo(get_option('cherrytruffle_color_recentheadings')); ?> !important; }
-	.sidebar-box-title { color:#<?php echo(get_option('cherrytruffle_color_sidebar_titles')); ?> !important; }
-	.footer-box h3 { color:#<?php echo(get_option('cherrytruffle_color_footer_titles')); ?> !important; }
-	#sidebar a { color:#<?php echo(get_option('cherrytruffle_color_sidebar_links')); ?> !important; }
-	.footer-box li a:link, .footer-box li a:hover, .footer-box li a:visited, .footer-box li a  { color:#<?php echo(get_option('cherrytruffle_color_footer_link')); ?> !important; }
-	.slogan { color:#<?php echo(get_option('cherrytruffle_color_slogan')); ?> !important; }
-</style>
-<?php }; ?>
-<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/js/superfish.js"></script>
-<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/js/custom.js"></script>
-<script type="text/javascript">
-jQuery(function(){
-jQuery('ul.superfish').superfish();
-});
-//<![CDATA[
-	jQuery(function(){
-<?php if (get_option('cherrytruffle_disable_toptier') == 'on') echo('jQuery("ul.nav > li > a > span.sf-sub-indicator").parent().attr("href","#")'); ?>
-	});
-//]]>	
-</script>
-<?php if (get_option('cherrytruffle_integration_head') <> '' && get_option('cherrytruffle_integrate_header_enable') == 'on') echo(get_option('cherrytruffle_integration_head')); ?>
+<?php
+	if (get_option('cherrytruffle_child_css') == 'on') {
+		?>
+			<link rel="stylesheet" href="<?php echo(get_option('cherrytruffle_child_cssurl')); ?>" type="text/css" media="screen" />
+		<?php
+	};
+	if (get_option('cherrytruffle_custom_colors') == 'on') {
+		?>
+			<style type="text/css">
+				body { color: #<?php echo(get_option('cherrytruffle_color_mainfont')); ?> !important; }
+				a:link, a:visited { color: #<?php echo(get_option('cherrytruffle_color_mainlink')); ?> !important; }
+				#pages li a, .current_page_item a, .home-link a { color: #<?php echo(get_option('cherrytruffle_color_pagelink')); ?> !important; }
+				#pages li a:hover { color: #<?php echo(get_option('cherrytruffle_color_pagelink_hover')); ?>!important; }
+				#categories li a, .current_page_item a, .home-link a { color: #<?php echo(get_option('cherrytruffle_color_catlink')); ?> !important; }
+				#categories li a:hover { color: #<?php echo(get_option('cherrytruffle_color_catlink_hover')); ?>!important; }
+				#slogan { color: #<?php echo(get_option('cherrytruffle_color_slogan')); ?> !important; }
+				.titles2 a, .titles a { color:#<?php echo(get_option('cherrytruffle_color_recentheadings')); ?> !important; }
+				.sidebar-box-title { color:#<?php echo(get_option('cherrytruffle_color_sidebar_titles')); ?> !important; }
+				.footer-box h3 { color:#<?php echo(get_option('cherrytruffle_color_footer_titles')); ?> !important; }
+				#sidebar a { color:#<?php echo(get_option('cherrytruffle_color_sidebar_links')); ?> !important; }
+				.footer-box li a:link, .footer-box li a:hover, .footer-box li a:visited, .footer-box li a  { color:#<?php echo(get_option('cherrytruffle_color_footer_link')); ?> !important; }
+				.slogan { color:#<?php echo(get_option('cherrytruffle_color_slogan')); ?> !important; }
+			</style>
+		<?php
+	};
+?>
+<?php
+	if (get_option('cherrytruffle_integration_head') <> '' && get_option('cherrytruffle_integrate_header_enable') == 'on'){
+		echo(get_option('cherrytruffle_integration_head'));
+	}
+?>
 </head>
 <body>
 <div id="header">
