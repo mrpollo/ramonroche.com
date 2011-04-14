@@ -19,10 +19,10 @@
 define('DB_NAME', 'rroche_wordpress');
 
 /** MySQL database username */
-define('DB_USER', 'web');
+define('DB_USER', 'root');
 
 /** MySQL database password */
-define('DB_PASSWORD', 'argelia');
+define('DB_PASSWORD', '1184roqr');
 
 /** MySQL hostname */
 define('DB_HOST', 'localhost');

@@ -1,0 +1,210 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+        <title>Calendar App | ramonroche.com</title>
+		<link rel="stylesheet" href="css/all.css" type="text/css" />
+		<script type="text/javascript" src="js/dload.js" language="JavaScript"></script>
+		<script type="text/javascript" src="js/event.js" language="JavaScript"></script>
+		
+		<!--[ jQuery and jQuery UI on Google]-->
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>
+		<link rel="stylesheet" href="/wp-content/themes/Basic/css/blitzer/jquery-ui-1.8.5.custom.css" type="text/css" media="screen" />
+		
+    </head>
+    
+    <body>
+        <div class="cal" id="cal-main">
+        	<div class="info" id="cal-info">
+	            <div class="info-top" id="900">
+	                9:00
+	                <div class="info-text">
+	                    AM
+	                </div>
+	            </div>
+	            <div class="info-line" id="930">
+	                9:30
+	            </div>
+	            <div class="info-top" id="1000">
+	                10:00
+	                <div class="info-text">
+	                    AM
+	                </div>
+	            </div>
+	            <div class="info-line" id="1030">
+	                10:30
+	            </div>
+	            <div class="info-top" id="1100">
+	                11:00
+	                <div class="info-text">
+	                    AM
+	                </div>
+	            </div>
+	            <div class="info-line" id="1130">
+	                11:30
+	            </div>
+	            <div class="info-top" id="1200">
+	                12:00
+	                <div class="info-text">
+	                    PM
+	                </div>
+	            </div>
+	            <div class="info-line" id="1230">
+	                12:30
+	            </div>
+	            <div class="info-top" id="1300">
+	                1:00
+	                <div class="info-text">
+	                    PM
+	                </div>
+	            </div>
+	            <div class="info-line" id="1330">
+	                1:30
+	            </div>
+	            <div class="info-top" id="1400">
+	                2:00
+	                <div class="info-text">
+	                    PM
+	                </div>
+	            </div>
+	            <div class="info-line" id="1430">
+	                2:30
+	            </div>
+	            <div class="info-top" id="1500">
+	                3:00
+	                <div class="info-text">
+	                    PM
+	                </div>
+	            </div>
+	            <div class="info-line" id="1530">
+	                3:30
+	            </div>
+	            <div class="info-top" id="1600">
+	                4:00
+	                <div class="info-text">
+	                    PM
+	                </div>
+	            </div>
+	            <div class="info-line" id="1630">
+	                4:30
+	            </div>
+	            <div class="info-top" id="1700">
+	                5:00
+	                <div class="info-text">
+	                    PM
+	                </div>
+	            </div>
+	            <div class="info-line" id="1730">
+	                5:30
+	            </div>
+	            <div class="info-top" id="1800">
+	                6:00
+	                <div class="info-text">
+	                    PM
+	                </div>
+	            </div>
+	            <div class="info-line" id="1830">
+	                6:30
+	            </div>
+	            <div class="info-top" id="1900">
+	                7:00
+	                <div class="info-text">
+	                    PM
+	                </div>
+	            </div>
+	            <div class="info-line" id="1930">
+	                7:30
+	            </div>
+	            <div class="info-top" id="2000">
+	                8:00
+	                <div class="info-text">
+	                    PM
+	                </div>
+	            </div>
+	            <div class="info-line" id="2030">
+	                8:30
+	            </div>
+	            <div class="info-top" id="2100">
+	                9:00
+	                <div class="info-text">
+	                    PM
+	                </div>
+	            </div>
+	        </div>
+	        <div class="canv" id="cal-area"></div>
+		</div>
+		<div class="toolbar">
+			<div id="clear-canvas" class="ui-button">Clear</div>
+			<div id="events-a" class="ui-button">Events 1</div>
+			<div id="events-b" class="ui-button">Events 2</div>
+			<div id="events-c" class="ui-button">Events 3</div>
+		</div>
+		<h1>Calendar App by: Ram&oacute;n Roche</h1>
+		<p>
+			I did not use the jQuery library on this project because i wanted to show i have enough knowledge of the language and about DOM manipulation <br/><br/>
+			Also the Calendar Javascript Class is deeply linked to the DOM shown above, the reason behind that is timing, i only had 2 days to finish this off and i decided to go this route <br/><br/>
+			Source can be found here: <br/><br/>
+			<a href="/lab/cal/js/event.js">Calendar App</a> <br/><br/>
+			<a href="/lab/cal/js/dload.js">On Load Utility</a>
+		</p>
+		<script language="JavaScript">
+			$(document).ready(function(){
+				$('.ui-button').button();
+				$('#clear-canvas').click(function(){
+					eCal.clearCanvas();
+				})
+				$('#events-b').click(function(){
+					eCal.layOutDay(secondTest);
+				})
+				$('#events-a').click(function(){
+					eCal.layOutDay(requiredAppointments);
+				})
+				$('#events-c').click(function(){
+					eCal.layOutDay(testAppointments);
+				})
+			});
+			var testAppointments = [
+				{id : 1, start : 30, end : 150},   // an event from 9:30am to 11:30am
+				{id : 2, start : 540, end : 600},  // an event from 6:00pm to 7:00pm
+				{id : 3, start : 560, end : 620},  // an event from 6:20pm to 7:20pm
+				{id : 4, start : 610, end : 670},  // an event from 7:10pm to 8:10pm
+				{id : 5, start : 210, end : 270},  // 
+				{id : 6, start : 220, end : 280},  // 
+				{id : 7, start : 230, end : 290},  // 
+				{id : 8, start : 240, end : 360},  // 
+				{id : 9, start : 310, end : 370}   // 
+			];
+			var requiredAppointments = [
+				{id : 1, start : 30, end : 150},   // an event from 9:30am to 11:30am
+				{id : 2, start : 540, end : 600},  // an event from 6:00pm to 7:00pm
+				{id : 3, start : 560, end : 620},  // an event from 6:20pm to 7:20pm
+				{id : 4, start : 610, end : 670}  // an event from 7:10pm to 8:10pm
+			];
+			var secondTest = [
+				{id : 1, start : 60, end : 300},   // an event from 10:00am to 12:00am
+				{id : 2, start : 120, end : 180},  // an event from 6:00pm to 7:00pm
+				{id : 3, start : 240, end : 260},  // an event from 6:20pm to 7:20pm
+				{id : 4, start : 610, end : 670}  // an event from 7:10pm to 8:10pm
+			];
+            dLoad.loaded(function(){
+				eCal.layOutDay(testAppointments);
+            });
+        </script>
+		<!-- Start Google Analytics -->
+		<script type="text/javascript">
+
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-12452636-1']);
+		  _gaq.push(['_trackPageview']);
+
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+
+		</script>
+		<!-- End Google Analytics -->
+    </body>
+</html>
