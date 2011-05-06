@@ -61,6 +61,7 @@ if ( ! isset($blog_id) )
 	$blog_id = 1;
 
 // Fix for IIS when running with PHP ISAPI
+/*
 if ( empty( $_SERVER['REQUEST_URI'] ) || ( php_sapi_name() != 'cgi-fcgi' && preg_match( '/^Microsoft-IIS\//', $_SERVER['SERVER_SOFTWARE'] ) ) ) {
 
 	// IIS Mod-Rewrite
@@ -91,6 +92,7 @@ if ( empty( $_SERVER['REQUEST_URI'] ) || ( php_sapi_name() != 'cgi-fcgi' && preg
 		}
 	}
 }
+*/
 
 // Fix for PHP as CGI hosts that set SCRIPT_FILENAME to something ending in php.cgi for all requests
 if ( isset($_SERVER['SCRIPT_FILENAME']) && ( strpos($_SERVER['SCRIPT_FILENAME'], 'php.cgi') == strlen($_SERVER['SCRIPT_FILENAME']) - 7 ) )
@@ -105,9 +107,16 @@ $PHP_SELF = $_SERVER['PHP_SELF'];
 if ( empty($PHP_SELF) )
 	$_SERVER['PHP_SELF'] = $PHP_SELF = preg_replace("/(\?.*)?$/",'',$_SERVER["REQUEST_URI"]);
 
+/*
 if ( version_compare( '4.3', phpversion(), '>' ) ) {
-	die( sprintf( /*WP_I18N_OLD_PHP*/'Your server is running PHP version %s but WordPress requires at least 4.3.'/*/WP_I18N_OLD_PHP*/, phpversion() ) );
+	die(
+		sprintf(
+				'Your server is running PHP version %s but WordPress requires at least 4.3.',
+			phpversion()
+		)
+	);
 }
+*/
 
 if ( !defined('WP_CONTENT_DIR') )
 	define( 'WP_CONTENT_DIR', ABSPATH . 'wp-content' ); // no trailing slash, full paths only - WP_CONTENT_URL is defined further down

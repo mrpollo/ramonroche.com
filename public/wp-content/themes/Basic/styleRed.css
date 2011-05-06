@@ -173,3 +173,20 @@ img.alignleft { padding: 4px; margin: 0 7px 2px 0; display: inline; }
 #search input { background: #483229; font-size:11px; color:#FFF; font-family:Tahoma, arial, verdana, courier; width:173px; height:19px; vertical-align:middle; padding:7px 10px 0px 10px; border: 1px solid #5D463D; }
 #search .input { width:28px; height:28px; background:none; border:none; vertical-align:middle; margin:0; padding:0; }
 #searchform { margin-right: 20px; margin-bottom: 15px; }
+
+
+/**
+ * IE Styles
+ **/
+
+.ie6 .nav li li { width: 240px; }
+.ie6 .nav li ul { width: 240px; }
+.ie6 #pages ul li a:hover { background-image: none; }
+.ie6 .nav li ul { border: none; }
+.ie6 .commentlist { margin: 0px 0px 0px 0px; width: 652px !important; overflow: hidden; }
+.ie6 .commentlist .children li { width: 85% !important; }
+.ie6 .adwrap { margin-left: 27px; float: left; }
+
+.ie7 #pages ul { margin-top: -25px; }
+.ie7 .nav li:hover ul, ul.nav li.sfHover ul { left:0px; top:50px; }
+.ie7 .nav li li:hover ul, ul.nav li li.sfHover ul { top:25px; }

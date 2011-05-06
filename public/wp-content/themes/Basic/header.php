@@ -18,9 +18,7 @@
 <!--[if (gte IE 9)|!(IE)]><!--> <html lang=en-us class=no-js> <!--<![endif]--> 
 <head> 
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 	<meta charset="utf-8">
-	<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
 	<title><?php elegant_titles(); ?></title>
 	<?php
 		elegant_description();
@@ -32,6 +30,7 @@
 		wp_head();
 	?>
 	<link rel="stylesheet" href="<?php bloginfo('stylesheet_directory'); ?>/style<?php echo $basic_color; ?>.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="/wp-content/themes/default/css/custom-theme/jquery-ui-1.8.12.custom.css" type="text/css" media="screen" />
 	<link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> RSS Feed" href="<?php bloginfo('rss2_url'); ?>" />
 	<link rel="alternate" type="application/atom+xml" title="<?php bloginfo('name'); ?> Atom Feed" href="<?php bloginfo('atom_url'); ?>" />
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />

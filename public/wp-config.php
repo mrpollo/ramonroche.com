@@ -22,7 +22,7 @@ define('DB_NAME', 'rroche_wordpress');
 define('DB_USER', 'root');
 
 /** MySQL database password */
-define('DB_PASSWORD', '1184roqr');
+define('DB_PASSWORD', 'root');
 
 /** MySQL hostname */
 define('DB_HOST', 'localhost');
