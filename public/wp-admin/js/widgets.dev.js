@@ -29,7 +29,7 @@ wpWidgets = {
 
 		$('a.widget-action').live('click', function(){
 			var css = {}, widget = $(this).closest('div.widget'), inside = widget.children('.widget-inside'), w = parseInt( widget.find('input.widget-width').val(), 10 );
-			
+
 			if ( inside.is(':hidden') ) {
 				if ( w > 250 && inside.closest('div.widgets-sortables').length ) {
 					css['width'] = w + 30 + 'px';
@@ -100,7 +100,7 @@ wpWidgets = {
 				ui.item.css({'marginLeft':'','width':''});
 			},
 			stop: function(e,ui) {
-				if ( ui.item.hasClass('ui-draggable') )
+				if ( ui.item.hasClass('ui-draggable') && ui.item.data('draggable') )
 					ui.item.draggable('destroy');
 
 				if ( ui.item.hasClass('deleting') ) {
