@@ -488,7 +488,7 @@ class wpTwitterWidget extends XavisysPlugin {
 		$args['title'] = $this->_buildLink($args['title'], $linkAttrs, current_user_can('unfiltered_html'));
 		//$widgetContent .= $args['before_title'] . $args['title'] . $args['after_title'];
 		
-		$widgetContent .= '<a href="http://twitter.com/mrpollo" class="twitter-follow-button" data-button="grey" data-text-color="#FFFFFF" data-link-color="#00AEFF">Follow @mrpollo</a><script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>';
+		$widgetContent .= '<h2><a href="http://twitter.com/mrpollo" class="twitter-follow-button" data-button="grey" data-text-color="#FFFFFF" data-link-color="#00AEFF">Follow @mrpollo</a><script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script></h2>';
 		
 		if (!is_a($tweets, 'wpTwitterWidgetException') && !empty($tweets[0]) && $args['avatar'] == 'true') {
 			$widgetContent .= '<div class="twitter-avatar">';
