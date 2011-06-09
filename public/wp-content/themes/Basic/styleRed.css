@@ -169,21 +169,21 @@ img.alignleft { padding: 4px; margin: 0 7px 2px 0; display: inline; }
 					margin: 5px 0 0 -10px;
 					display: block;
 				}
-				#sidebar .twitter-widget-pro .sidebar-box ul {
+				#sidebar .sidebar-box .twitter-widget-pro ul {
 					font-size: 11px;
 					line-height: 1.5em;
 				}
-				#sidebar .twitter-widget-pro .sidebar-box ul li {
+				#sidebar .sidebar-box .twitter-widget-pro ul li {
 					margin: 0 3px 3px 0;
 				}
-				#sidebar .twitter-widget-pro .sidebar-box ul li .entry-meta {
+				#sidebar .sidebar-box .twitter-widget-pro ul li .entry-meta {
 					color: #CCCCCC;
 					font-size: 9px;
 				}
-				#sidebar .twitter-widget-pro .sidebar-box ul li .entry-meta a {
+				#sidebar .sidebar-box .twitter-widget-pro ul li .entry-meta a {
 					color: #CCCCCC;
 				}
-				#sidebar .twitter-widget-pro .sidebar-box ul li .entry-meta .from-meta a{
+				#sidebar .sidebar-box .twitter-widget-pro ul li .entry-meta .from-meta a{
 					color: #00AEFF;
 				}
 
