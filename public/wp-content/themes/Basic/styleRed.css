@@ -155,10 +155,10 @@ img.alignleft { padding: 4px; margin: 0 7px 2px 0; display: inline; }
 				.sidebar-box ul li { margin: 5px 3px 3px 0px; }
 				.sidebar-box ul { list-style-image: url(images/sidebar-bullet.gif); }
 				.sidebar-box h2 { font-size: 18px; color: #FFF; font-weight: normal; text-transform: uppercase; font-family: Trebuchet MS; background-image: url(images/h3-bg.gif); background-repeat: no-repeat; background-position: left; width: 200px; height: 31px; padding-left: 22px; padding-top: 10px; margin: 0px 0px 0px -10px; }
-				.side-heading{
+				.side-heading, .textwidget{
 					color: #FFF;
 					font-weight: normal;
-					font-family: Trebuchet MS;
+					font-size: 11px;
 					background-image: url(images/h3-bg.gif);
 					background-repeat: no-repeat;
 					background-position: left;
@@ -166,7 +166,8 @@ img.alignleft { padding: 4px; margin: 0 7px 2px 0; display: inline; }
 					height: 31px;
 					padding-left: 22px;
 					padding-top: 10px;
-					margin: 0px 0px 0px -10px;
+					margin: 5px 0 5px -10px;
+					display: block;
 				}
 
 
