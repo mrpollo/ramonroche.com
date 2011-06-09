@@ -186,6 +186,10 @@ img.alignleft { padding: 4px; margin: 0 7px 2px 0; display: inline; }
 				#sidebar .sidebar-box .twitter-widget-pro ul li .entry-meta .from-meta a{
 					color: #00AEFF;
 				}
+				#sidebar .sidebar-box .twitter-widget-pro ul li .entry-meta .in-reply-to-meta a{
+					color: #FF5151;
+					margin: 0 5px;
+				}
 
 
 /*------------------------------------------------*/
