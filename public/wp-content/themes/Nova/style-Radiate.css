@@ -1,0 +1,47 @@
+body { background: url(images/radiate/center-top-bg.png) center top; }
+	#center-highlight { background: url(images/radiate/top-bg.png) no-repeat center top; }
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { color: #fffefe; }
+	.entry h2.title a, .entry h1.title, h3#comments { color: #fff; }
+		ul#top-menu a { color: #fffefe; text-shadow: 1px 1px 1px #000000; }
+		ul#top-menu > li.current_page_item { background:url(images/blue/menu-nav.png) no-repeat right bottom;  }
+			ul#main-tabs li.ui-state-active { background:url(images/blue/active-tab2.png) 0px 6px no-repeat; }
+				ul#main-tabs li.ui-state-active strong { color: #555555; text-shadow: 1px 1px 1px #fff;}
+					ul#main-tabs li.ui-state-active span { color: #000; text-shadow: 1px 1px 1px #fff; }
+		#featured .description p { color:#ffffff; }
+		div#controllers a { background:url(images/blue/controller1.png) no-repeat; }
+			div#controllers a.activeSlide { background:url(images/blue/controller2.png) no-repeat; }
+	#main-area, #footer-widgets { background: #e9e8e8 url(images/blue/main-area.png) repeat-x top left; }				ul#main-tabs strong { color: #ffffff; text-shadow: 1px 1px 1px #000; }
+					ul#main-tabs span { color:#ffffff; text-shadow:1px 1px 1px rgba(0,0,0,0.4); }	
+		p#copyright { color:#ffffff; text-shadow: 1px 1px 1px #000; }	
+			p#copyright a { color:#ffffff; }
+			.post-info { background: url(images/blue/postinfo-bg.png) no-repeat; }
+				.post-info p.post-meta { background: url(images/blue/postinfo-bg.png) no-repeat bottom left; color: #fff; text-shadow:1px 1px 1px #000; }
+					p.post-meta a { color: #7d976e; }
+					p.post-meta a:hover { color: #fff; }
+			.entry p { color:#ffffff; text-shadow: 1px 1px 1px #000; }
+			.entry a { text-shadow: 1px 1px 1px #000; }	
+			.entry a.readmore { background:url(images/blue/menu-nav.png) no-repeat right bottom; color:#ffffff; display:block; float:right; font-size:12px; height:29px; line-height:27px; padding-right:15px; text-shadow:1px 1px 1px rgba(0,0,0,0.4); font-weight: bold; margin-bottom: 25px; }
+				.entry a.readmore span { background:url(images/blue/menu-nav.png) no-repeat;
+display:block; height:29px; padding-left: 15px; }
+					#respond p { color:#ffffff; text-shadow: 1px 1px 1px #000; }
+			#sidebar h3.widgettitle { background: url(images/blue/sidebar-separator.png) no-repeat bottom left; }
+		#entries-area-content { background: none; }	
+		#entries-area { background: url(images/blue/content-main-bg.png) repeat-y 684px top; }
+			#sidebar h3.widgettitle { color:#ffffff; text-shadow: 1px 1px 1px #000; }
+				#sidebar .widget a { color:#ffffff; text-shadow: 1px 1px 1px #000; }
+					#sidebar .widget ul li { color:#ffffff; text-shadow: 1px 1px 1px #000; }
+					
+ul#top-menu ul a { color: #555555; text-shadow: 1px 1px 1px #FFFFFF; }
+#featured h2.title a { color: #fff; }
+ul#top-menu > li.current_page_item > a { background: url("images/blue/menu-nav.png") no-repeat scroll 0 0 transparent; }
+
+#sidebar, #wp-calendar td#today { color: #FFFFFF; text-shadow: 1px 1px 1px #000; }
+#wp-calendar td { color: #eee; }
+.wp-pagenavi, .wp-pagenavi a { color: #FFFFFF !important; text-shadow: none !important; }
+.wp-pagenavi a:hover { color: #fff !important; }
+.entry { color: #fff; text-shadow: 1px 1px 1px #000; }
+.commentmetadata { color: #EEEEEE; text-shadow: 1px 1px 1px #000000; }
+
+h1, h2, h3, h4, h5, h6 { color: #fff; }
+blockquote p { color: #666666 !important; text-shadow: none !important; }
+strong { color: #FFFFFF; }

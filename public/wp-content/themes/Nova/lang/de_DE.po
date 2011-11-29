@@ -1,0 +1,305 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Nova 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-08-02 18:43+0600\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Ann <anochka1985@gmail.com>\n"
+"Language-Team: Ann <anochka1985@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: esc_html__;esc_html_e;esc_attr__;esc_attr_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: ..\n"
+
+#: ../comments.php:4
+msgid "Please do not load this page directly. Thanks!"
+msgstr "Uploaden Sie bitte diese Seite direkt nicht. Danke!"
+
+#: ../comments.php:8
+msgid "This post is password protected. Enter the password to view comments."
+msgstr "Dieser Artikel ist passwortgeschützt. Geben Sie Ihr Passwort ein um die Kommentare anzuzeigen."
+
+#: ../comments.php:19
+msgid "No Comments"
+msgstr "Keine Kommentare"
+
+#: ../comments.php:19
+msgid "One Comment"
+msgstr "1 Kommentar"
+
+#: ../comments.php:19
+msgid "Comments"
+msgstr "Kommentare"
+
+#: ../comments.php:43
+msgid "Trackbacks/Pingbacks"
+msgstr "Trackbacks/Pingbacks"
+
+#: ../comments.php:63
+#, fuzzy
+msgid "Submit Comment"
+msgstr "Keine Kommentare"
+
+#: ../comments.php:63
+#, fuzzy
+msgid "Leave a Reply"
+msgstr "Einen Kommentar schreiben"
+
+#: ../comments.php:63
+#, fuzzy, php-format
+msgid "Leave a Reply to %s"
+msgstr "Einen Kommentar schreiben zu %s"
+
+#: ../footer.php:14
+msgid "Designed by "
+msgstr "Designed by"
+
+#: ../footer.php:14
+msgid "Powered by "
+msgstr "Powered by"
+
+#: ../header.php:59
+msgid "Home"
+msgstr "Startseite"
+
+#: ../header.php:73
+#: ../page-search.php:57
+msgid "search this site..."
+msgstr "suchen..."
+
+#: ../home.php:82
+#: ../home.php:114
+#: ../page-blog.php:93
+msgid "read more"
+msgstr "mehr"
+
+#: ../home.php:105
+#: ../page-gallery.php:77
+#: ../page-template-portfolio.php:124
+msgid "Zoom in"
+msgstr "Zoom in"
+
+#: ../home.php:106
+#: ../page-gallery.php:78
+#: ../page-template-portfolio.php:125
+msgid "Read more"
+msgstr "Mehr"
+
+#: ../page-blog.php:58
+#: ../page-contact.php:99
+#: ../page-full.php:44
+#: ../page-gallery.php:53
+#: ../page-login.php:50
+#: ../page-search.php:50
+#: ../page-search.php:60
+#: ../page-sitemap.php:50
+#: ../page-sitemap.php:54
+#: ../page-template-portfolio.php:62
+#: ../page.php:38
+msgid "Pages"
+msgstr "Seiten"
+
+#: ../page-blog.php:73
+msgid "Posted"
+msgstr "Gepostet"
+
+#: ../page-blog.php:73
+msgid "by"
+msgstr "von"
+
+#: ../page-blog.php:73
+msgid "on"
+msgstr "am"
+
+#: ../page-blog.php:73
+msgid "in"
+msgstr "in"
+
+#: ../page-blog.php:73
+msgid "0 comments"
+msgstr "Keine Kommentare"
+
+#: ../page-blog.php:73
+msgid "1 comment"
+msgstr "1 Kommentar"
+
+#: ../page-blog.php:73
+msgid "comments"
+msgstr "Kommentare"
+
+#: ../page-blog.php:116
+#: ../page-contact.php:148
+#: ../page-full.php:45
+#: ../page-gallery.php:95
+#: ../page-login.php:67
+#: ../page-search.php:96
+#: ../page-sitemap.php:83
+#: ../page-template-portfolio.php:170
+#: ../page.php:39
+msgid "Edit this page"
+msgstr "Seite bearbeiten"
+
+#: ../page-contact.php:19
+msgid "Make sure you entered the captcha. "
+msgstr ""
+
+#: ../page-contact.php:23
+msgid "You entered the wrong number in captcha. "
+msgstr ""
+
+#: ../page-contact.php:32
+msgid "Make sure you fill all fields. "
+msgstr ""
+
+#: ../page-contact.php:37
+msgid "Invalid Email. "
+msgstr ""
+
+#: ../page-contact.php:58
+msgid "Thanks for contacting us"
+msgstr ""
+
+#: ../page-contact.php:109
+msgid "Name"
+msgstr "Name"
+
+#: ../page-contact.php:113
+msgid "Email Address"
+msgstr ""
+
+#: ../page-contact.php:117
+msgid "Subject"
+msgstr ""
+
+#: ../page-contact.php:124
+msgid "Captcha: "
+msgstr ""
+
+#: ../page-contact.php:140
+msgid "Reset"
+msgstr ""
+
+#: ../page-contact.php:141
+#: ../page-search.php:88
+#, fuzzy
+msgid "Submit"
+msgstr "absenden"
+
+#: ../page-login.php:56
+msgid "Username"
+msgstr ""
+
+#: ../page-login.php:57
+msgid "Password"
+msgstr ""
+
+#: ../page-login.php:61
+msgid "Not a member?"
+msgstr ""
+
+#: ../page-login.php:61
+msgid "Register today!"
+msgstr ""
+
+#: ../page-search.php:54
+#, fuzzy
+msgid "search this website"
+msgstr "suchen..."
+
+#: ../page-search.php:59
+#, fuzzy
+msgid "Posts"
+msgstr "Gepostet"
+
+#: ../page-search.php:63
+msgid "Select a month"
+msgstr ""
+
+#: ../page-sitemap.php:59
+msgid "Categories"
+msgstr ""
+
+#: ../page-sitemap.php:64
+#, fuzzy
+msgid "Tags"
+msgstr "Seiten"
+
+#: ../page-sitemap.php:76
+msgid "Authors"
+msgstr ""
+
+#: ../searchform.php:4
+msgid "Search"
+msgstr "Suchen"
+
+#: ../includes/breadcrumbs.php:10
+msgid "Posts Tagged "
+msgstr "Artikel getaggt mit"
+
+#: ../includes/breadcrumbs.php:12
+#: ../includes/breadcrumbs.php:14
+#: ../includes/breadcrumbs.php:16
+msgid "Posts made in"
+msgstr "Gepostet im"
+
+#: ../includes/breadcrumbs.php:18
+msgid "Search results for"
+msgstr "Suchresultate"
+
+#: ../includes/breadcrumbs.php:26
+msgid "Posts by "
+msgstr "Gepostet von"
+
+#: ../includes/entry.php:15
+#, php-format
+msgid "Permanent Link to %s"
+msgstr "Permanenter Link zu %s"
+
+#: ../includes/navigation.php:2
+msgid "&laquo; Older Entries"
+msgstr "&laquo; &Auml;ltere Eintr&auml;ge"
+
+#: ../includes/navigation.php:3
+msgid "Next Entries &raquo;"
+msgstr "Neuere Eintr&auml;ge &raquo;"
+
+#: ../includes/no-results.php:3
+msgid "No Results Found"
+msgstr "Nicht gefunden"
+
+#: ../includes/no-results.php:4
+msgid "The page you requested could not be found. Try refining your search, or use the navigation above to locate the post."
+msgstr "Keine Seite gefunden. Etwas anderes Suchen?"
+
+#: ../includes/functions/comments.php:21
+msgid "Your comment is awaiting moderation."
+msgstr "Dein Kommentar wartet auf die &Uuml;berpr&uuml;fung."
+
+#: ../includes/functions/comments.php:27
+#, fuzzy
+msgid "Reply"
+msgstr "beantworten"
+
+#~ msgid "You must be"
+#~ msgstr "Du musst"
+#~ msgid "logged in"
+#~ msgstr "eingeloggt"
+#~ msgid "to post a comment."
+#~ msgstr "sein um einen Kommentar zu schreiben."
+#~ msgid "Logged in as"
+#~ msgstr "Angemeldet als"
+#~ msgid "Log out &raquo;"
+#~ msgstr "Abmelden &raquo;"
+#~ msgid "(required)"
+#~ msgstr "(ben&ouml;tigt)"
+#~ msgid "Mail (will not be published)"
+#~ msgstr "Mail (wird nicht ver&ouml;ffentlicht)"
+#~ msgid "Website"
+#~ msgstr "Website"
+
