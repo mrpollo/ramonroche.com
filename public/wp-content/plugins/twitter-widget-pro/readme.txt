@@ -2,9 +2,9 @@
 Contributors: aaroncampbell
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=paypal%40xavisys%2ecom&item_name=Twitter%20Widget%20Pro&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8
 Tags: twitter, widget, feed
-Requires at least: 2.8
-Tested up to: 2.9
-Stable tag: 2.2.0
+Requires at least: 3.0
+Tested up to: 3.3.0
+Stable tag: 2.3.3
 
 A widget that properly handles twitter feeds, including parsing @username, #hashtags, and URLs into links. Requires PHP5.
 
@@ -15,6 +15,8 @@ link parsing.  It supports displaying profiles images, and even lets you control
 whether to display the time and date of a tweet or how log ago it happened
 (about 5 hours ago, etc).  Requires PHP5.
 
+Author: <a href="http://xavisys.com/" title="WordPress development">Aaron D. Campbell</a>
+
 == Installation ==
 
 1. Verify that you have PHP5, which is required for this plugin.
@@ -23,10 +25,6 @@ whether to display the time and date of a tweet or how log ago it happened
 1. In WordPress admin go to 'Appearance' -> 'Widgets' and add "Twitter Widget Pro" to one of your widget-ready areas of your site
 
 == Frequently Asked Questions ==
-
-= Can I use more than one instance of this widget? =
-
-Yes, Twitter Widget Pro employs the multi-widget pattern, which allows you to not only have more than one instance of this widget on your site, but even allows more than one instance of this widget in a single sidebar.
 
 = Can I follow more than one feed? =
 
@@ -52,7 +50,8 @@ However, there are more things you can control.
 * errmsg - This is the error message that displays if there's a problem connecting to Twitter
 * hiderss - set to true to hide the RSS icon (defaults to false)
 * hidereplies - set to true to hide @replies that are sent from the account (defaults to false)
-* avatar - set to true to display the avatar from the Twitter account (defaults to false)
+* hidefrom - set to true to hide the "from ____" link that shows the application the tweet was sent from (defaults to false)
+* avatar - set to one of the available sizes (mini, normal, bigger, or original) (defaults to none)
 * targetBlank - set to true to have all links open in a new window (defaults to false)
 * showXavisysLink - set to true to display a link to the Twitter Widget Pro page.  We greatly appreciate your support in linking to this page so others can find this useful plugin too!  (defaults to false)
 * items - The number of items to display (defaults to 10)
@@ -60,12 +59,64 @@ However, there are more things you can control.
 * showts - Number of seconds old a tweet has to be to show ___ ago rather than a date/time (defaults to 86400 seconds which is 24 hours)
 * dateFormat - The format for dates (defaults to'h:i:s A F d, Y' or it's localization)
 * title - The title of the widget (defaults to 'Twitter: Username')
+* showretweets - set to true to show retweets, false to hide them (defaults to true)
+* showintents - set to true to show the reply, retweet, and favorite links for each tweet, false to hide them (defaults to true)
+* showfollow - set to true to show the follow button after tweets, false to hide it (defaults to true)
 
 You can see these put into action by trying something like:
 
 * `[twitter-widget username="wpinformer" before_widget="<div class='half-box'>" after_widget="</div>" before_title="<h1>" after_title="</h1>" errmsg="Uh oh!" hiderss="true" hidereplies="true" targetBlank="true" avatar="1" showXavisysLink="1" items="3" showts="60"]Your Title[/twitter-widget]`
 * `[twitter-widget username="wpinformer" before_widget="<div class='half-box'>" after_widget="</div>" before_title="<h1>" after_title="</h1>" errmsg="Uh oh!" hiderss="true" hidereplies="true" targetBlank="true" avatar="1" showXavisysLink="1" items="3" showts="60" title="Your Title"]`
 * `[twitter-widget username="wpinformer"]`
+
+= How can I style it to look nicer? =
+
+There are plenty of CSS classes throughout the HTML that is generated, and you can use those to style things.  Here is some sample CSS that I use with the <a href="essencetheme.com" title="Essence Theme for WordPress">Essence Theme</a>.  You'll need to get the "Everything" sprite from <a href="https://dev.twitter.com/docs/image-resources">Twitter's Image Resources</a>.
+`
+.widget_twitter div {
+	padding:0;
+}
+
+.widget_twitter ul li {
+	margin-bottom:5px;
+}
+
+.widget_twitter .follow-button,
+.widget_twitter .xavisys-link {
+	margin:0 10px 10px 25px;
+}
+
+.widget_twitter .entry-meta {
+	display:block;
+	font-size:80%;
+}
+
+.widget_twitter .intent-meta a {
+	background: url(images/everything-spritev2.png); /** from Twitter ressources */
+	display: inline-block;
+	height: 16px;
+	text-indent: -9999px;
+	width: 16px;
+}
+.widget_twitter .intent-meta a.in-reply-to {
+	background-position: 0 center;
+}
+.widget_twitter .intent-meta a:hover.in-reply-to {
+	background-position: -16px center;
+}
+.widget_twitter .intent-meta a.favorite {
+	background-position: -32px center;
+}
+.widget_twitter .intent-meta a:hover.favorite {
+	background-position: -48px center;
+}
+.widget_twitter .intent-meta a.retweet {
+	background-position: -80px center;
+}
+.widget_twitter .intent-meta a:hover.retweet {
+	background-position: -96px center;
+}
+`
 
 = Why can't I display a friends feed anymore? =
 
@@ -78,7 +129,58 @@ Aparently the database queries required to display the friends feed was causing 
 3. This is what the widget looks like in the default theme with no added styles.
 4. By using some (X)HTML in the title element and adding a few styles and a background image, you could make it look like this.
 
+== Upgrade Notice ==
+
+= 2.3.3 =
+Fixed issue with updates getting stuck, and add data-lang support for Twitter intents
+
+= 2.3.2 =
+Fixes some strings that were not translatable
+
+= 2.3.1 =
+Fixes an issue with the intents and follow settings not being saved
+
+= 2.3.0 =
+Fewer "could not connect to Twitter" messages, new links (reply, retweet, favorite), new follow button, and avatar fixes
+
 == Changelog ==
+
+= 2.3.3 =
+* Updated TLC to fix issue where updates could get stuck "locked"
+* Add data-lang support for Twitter intents
+* Updated Italian translation - Thanks Gianni Diurno - http://gidibao.net
+
+= 2.3.2 =
+* Fix some strings that were not translatable
+* New Italian translation Thanks to Gianni Diurno - http://gidibao.net
+
+= 2.3.1 =
+* Fixes issue with saving a couple of the settings (tweet intents and follow button)
+
+= 2.3.0 =
+* Integrate Mark Jaquith's TLC Transients https://gist.github.com/1149945 which lets us only get rid of old tweets once we have successfully received new ones.
+* Add Twitter Web Intents (reply, retweet, favorite)
+* Add option for Twitter Follow button
+* Fix issues with saving avatar sizes
+* Remove "Hide RSS Icon and Link" option - Decisions not options.
+* Removed link from title.  Use the follow button option or if you have unfiltered_html privileges you can enter the HTML link as the title.
+
+= 2.2.4 =
+* Use the new API URLs
+* Use the new "hide replies" option in the Twitter API
+* Add support to show retweets
+* Add support for multiple profile image sizes
+
+= 2.2.3 =
+* The Twitter-pocolypse hit a while back but since so many servers are 64 bit it wasn't an issue.  This fixes links for users on 32 bit servers.
+* Fix some notices thrown by translated strings
+
+= 2.2.2 =
+* Fix issue introduced in 2.2.1 with an incorrect function name '_hashtagLink' (sorry about that)
+
+= 2.2.1 =
+* Add missing space between "from" and "in reply to"
+* Add the ability to remove the "from" links from displaying - Thanks to <a href="http://yoast.com/">Joost de Valk</a> for the request and the patch!
 
 = 2.2.0 =
 * Now uses the Xavisys WordPress Plugin Framework - http://xavisys.com/xavisys-wordpress-plugin-framework/
