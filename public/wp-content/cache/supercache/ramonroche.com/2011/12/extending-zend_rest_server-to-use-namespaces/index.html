@@ -1,0 +1,194 @@
+<!doctype html public "✰">
+<!--[if lt IE 7 ]><html lang=en-us class="no-js ie6"><![endif]--> 
+<!--[if IE 7 ]><html lang=en-us class="no-js ie7"><![endif]--> 
+<!--[if IE 8 ]><html lang=en-us class="no-js ie8"><![endif]--> 
+<!--[if (gte IE 9)|!(IE)]><!--> <html lang=en-us class=no-js> <!--<![endif]--> 
+<head> 
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1">
+	<meta charset="utf-8">
+	<title>Zend Framework Rest Server | ramonroche.com</title>
+	
+<!-- This site is optimized with the Yoast WordPress SEO plugin v1.2.8.7 - http://yoast.com/wordpress/seo/ -->
+<link rel="canonical" href="http://ramonroche.com/2011/12/extending-zend_rest_server-to-use-namespaces/" />
+<!-- / Yoast WordPress SEO plugin. -->
+
+<link rel="alternate" type="application/rss+xml" title="ramonroche.com &raquo; Extending Zend_Rest_Server to use namespaces Comments Feed" href="http://ramonroche.com/2011/12/extending-zend_rest_server-to-use-namespaces/feed/" />
+<link rel='stylesheet' id='wp-pagenavi-css'  href='http://ramonroche.com/wp-content/themes/Basic/pagenavi-css.css?ver=2.70' type='text/css' media='all' />
+<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js?ver=1.5.2'></script>
+<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js?ver=1.5.2'></script>
+<script type='text/javascript' src='http://ramonroche.com/wp-includes/js/comment-reply.js?ver=3.4.2'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://ramonroche.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://ramonroche.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 3.4.2" />
+<link rel='shortlink' href='http://ramonroche.com/?p=134' />
+	<link rel="stylesheet" href="http://ramonroche.com/wp-content/themes/Basic/styleRed.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="/wp-content/themes/default/css/custom-theme/jquery-ui-1.8.12.custom.css" type="text/css" media="screen" />
+	<link rel="alternate" type="application/rss+xml" title="ramonroche.com RSS Feed" href="http://ramonroche.com/feed/" />
+	<link rel="alternate" type="application/atom+xml" title="ramonroche.com Atom Feed" href="http://ramonroche.com/feed/atom/" />
+	<link rel="pingback" href="http://ramonroche.com/xmlrpc.php" />
+	<!--[if IE 7]>	
+		<link rel="stylesheet" type="text/css" media="all" href="http://ramonroche.com/wp-content/themes/Basic/iestyle.css" />
+	<![endif]-->
+	<!--[if lt IE 7]>
+		<link rel="stylesheet" type="text/css" media="all" href="http://ramonroche.com/wp-content/themes/Basic/ie6style.css" />
+	<![endif]-->
+		</head>
+<body>
+<!--This controls pages navigation bar-->
+<div id="pages">
+    <ul class="nav superfish">
+								<li >
+							<a href="http://ramonroche.com">Home</a>
+						</li>
+					<li class="page_item page-item-2"><a href="http://ramonroche.com/about/">About Me</a></li>
+    </ul>
+    <div id="search">
+        <form method="get" action="http://ramonroche.com" style="padding:0px 0px 0px 0px; margin:0px 0px 0px 0px">
+            <input type="text"  name="s" value=""/>
+            <input type="image" class="input" src="http://ramonroche.com/wp-content/themes/Basic/images/search-Red.gif" value="submit"/>
+        </form>
+    </div>
+</div>
+<!--End pages navigation-->
+<div id="wrapper2">
+
+<div id="container">
+<div id="left-div">
+    <div id="left-inside">
+		                        <!--Begin Post-->
+        <div class="home-post-wrap">
+            <h1 class="titles"><a href="http://ramonroche.com/2011/12/extending-zend_rest_server-to-use-namespaces/" title="Permanent Link to Extending Zend_Rest_Server to use namespaces">
+                Extending Zend_Rest_Server to use namespaces                </a></h1>
+								<span class="post-info">
+		Posted  by <a href="http://ramonroche.com/author/admin/" title="Posts by admin" rel="author">admin</a>  in <a href="http://ramonroche.com/category/development/" title="View all posts in Development" rel="category tag">Development</a>, <a href="http://ramonroche.com/category/development/php/" title="View all posts in PHP" rel="category tag">PHP</a>, <a href="http://ramonroche.com/category/uncategorized/" title="View all posts in Uncategorized" rel="category tag">Uncategorized</a>, <a href="http://ramonroche.com/category/development/web/" title="View all posts in Web" rel="category tag">Web</a>	</span>
+	<span class="post-info2">
+		 on Dec 16th, 2011 | <a href="http://ramonroche.com/2011/12/extending-zend_rest_server-to-use-namespaces/#respond" title="Comment on Extending Zend_Rest_Server to use namespaces"><span class="dsq-postid" rel="134 http://ramonroche.com/?p=134">0 comments</span></a>	</span>	
+ 			
+						
+            <div style="clear: both;"></div>
+			
+            <p>I&#8217;ve been building an API for a project I&#8217;m &#8220;secretly&#8221; working on, and I wanted to have a REST endpoint to consume some resources, I wanted to have my resources divided as follows</p>
+<p>appname.resource.action</p>
+<p>for instance:<br />
+myapp.post.create</p>
+<p>I&#8217;m building this app using Zend Framework, I&#8217;ts not the first time i have to deal with Zend, but it was the first using the Rest Server component, and I was shock to find the setClass method did support the namespace, but it wasn&#8217;t being used, so I decided to roll out my own extending theirs</p>
+<p><script src="https://gist.github.com/1484948.js"> </script></p>
+        </div>
+		                <div style="clear: both;"></div>
+         			
+<div id="disqus_thread">
+    </div>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+    var disqus_url = 'http://ramonroche.com/2011/12/extending-zend_rest_server-to-use-namespaces/';
+    var disqus_identifier = '134 http://ramonroche.com/?p=134';
+    var disqus_container_id = 'disqus_thread';
+    var disqus_domain = 'disqus.com';
+    var disqus_shortname = 'ramonroche';
+    var disqus_title = "Extending Zend_Rest_Server to use namespaces";
+        var disqus_config = function () {
+        var config = this; // Access to the config object
+
+        /*
+           All currently supported events:
+            * preData — fires just before we request for initial data
+            * preInit - fires after we get initial data but before we load any dependencies
+            * onInit  - fires when all dependencies are resolved but before dtpl template is rendered
+            * afterRender - fires when template is rendered but before we show it
+            * onReady - everything is done
+         */
+
+        config.callbacks.preData.push(function() {
+            // clear out the container (its filled for SEO/legacy purposes)
+            document.getElementById(disqus_container_id).innerHTML = '';
+        });
+                config.callbacks.onReady.push(function() {
+            // sync comments in the background so we don't block the page
+            var script = document.createElement('script');
+            script.async = true;
+            script.src = '?cf_action=sync_comments&post_id=134';
+
+            var firstScript = document.getElementsByTagName( "script" )[0];
+            firstScript.parentNode.insertBefore(script, firstScript);
+        });
+                    };
+    var facebookXdReceiverPath = 'http://ramonroche.com/wp-content/plugins/disqus-comment-system/xd_receiver.htm';
+/* ]]> */
+</script>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+    var DsqLocal = {
+        'trackbacks': [
+        ],
+        'trackback_url': "http:\/\/ramonroche.com\/2011\/12\/extending-zend_rest_server-to-use-namespaces\/trackback\/"    };
+/* ]]> */
+</script>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript';
+    dsq.async = true;
+        dsq.src = 'http' + '://' + disqus_shortname + '.' + 'disqus.com' + '/embed.js?pname=wordpress&pver=2.73';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+/* ]]> */
+</script>
+		                    </div>
+</div>
+<!--Begin Sidebar-->
+<div id="sidebar">
+
+    <div id="header">
+		<a href="http://ramonroche.com" title="ramonroche.com">
+			<img src="http://ramonroche.com/wp-content/themes/Basic/images/logo-Red.gif" alt="ramonroche.com Logo" class="logo" />
+		</a>
+	</div>
+    <div class="sidebar-box">			<div class="textwidget"><p class="side-heading"><a href="http://www.linkedin.com/in/ramonroche"><img src="http://www.linkedin.com/img/webpromo/btn_in_20x15.png" width="20" height="15" alt="View Ramon Roche's LinkedIn profile" style="vertical-align:middle" border="0">View Ramon Roche's profile</a></p></div>
+		</div><div class="sidebar-box">			<div class="textwidget"><p class="side-heading"><a href="http://dl.dropbox.com/u/9694286/Resume/ramonroche-resume.pdf"><img src="/lab/pdf-icon-small.png" width="20" height="20" alt="Download Ramon Roche's Resume" style="margin-right: 2px; vertical-align: bottom;" border="0"> Download my resume</a></p></div>
+		</div>		<div class="sidebar-box">		<h2>Also here:</h2>		<ul>
+				<li><a href="http://ramonroche.com/2011/12/extending-zend_rest_server-to-use-namespaces/" title="Extending Zend_Rest_Server to use namespaces">Extending Zend_Rest_Server to use namespaces</a></li>
+				<li><a href="http://ramonroche.com/2011/12/installing-geoip-php-library-and-geoip-standard-on-os-x-10-7-lion-for-use-with-mamp-using-pecl-and-homebrew/" title="Installing geoip php library and geoip standard on OS X 10.7 (Lion) for use with MAMP using PECL and Homebrew">Installing geoip php library and geoip standard on OS X 10.7 (Lion) for use with MAMP using PECL and Homebrew</a></li>
+				<li><a href="http://ramonroche.com/2011/11/installing-phpunit-on-os-x-using-mamp-via-pear/" title="Installing PHPUnit on OS X using MAMP via PEAR">Installing PHPUnit on OS X using MAMP via PEAR</a></li>
+				<li><a href="http://ramonroche.com/2011/09/mtr-homebrew/" title="MTR &#8211; Homebrew">MTR &#8211; Homebrew</a></li>
+				<li><a href="http://ramonroche.com/2011/09/installing-imagemagick-with-hombrew/" title="Installing Imagemagick with Hombrew ( libtiff fix ) UPDATED">Installing Imagemagick with Hombrew ( libtiff fix ) UPDATED</a></li>
+				</ul>
+		</div><div class="sidebar-box"><div><h2><span class='twitterwidget twitterwidget-title'>Twitter: mrpollo</span></h2><ul><li><span class='entry-content'><a href="http://twitter.com/yaninnemariel" class="twitter-user">@yaninnemariel</a> Ay Si! <a href="http://t.co/rmgw4vcF">http://t.co/rmgw4vcF</a></span> <span class='entry-meta'><span class='time-meta'><a href="http://twitter.com/mrpollo/statuses/266247369685884928">about 41 minutes ago</a></span> <span class='from-meta'>from <a href="http://itunes.apple.com/us/app/twitter/id409789998?mt=12" rel="nofollow">Twitter for Mac</a></span> <span class="in-reply-to-meta"><a href="http://twitter.com/yaninnemariel/statuses/266242533422673920" class="reply-to">in reply to yaninnemariel</a></span></span></li><li><span class='entry-content'><a href="http://twitter.com/DarkPadme" class="twitter-user">@DarkPadme</a> thanks!, espero no encontrarme a gente jojojo</span> <span class='entry-meta'><span class='time-meta'><a href="http://twitter.com/mrpollo/statuses/266246872862167041">about 43 minutes ago</a></span> <span class='from-meta'>from <a href="http://itunes.apple.com/us/app/twitter/id409789998?mt=12" rel="nofollow">Twitter for Mac</a></span> <span class="in-reply-to-meta"><a href="http://twitter.com/DarkPadme/statuses/266243555352256512" class="reply-to">in reply to DarkPadme</a></span></span></li><li><span class='entry-content'><a href="http://twitter.com/iguanaz" class="twitter-user">@iguanaz</a> a las 6pm,</span> <span class='entry-meta'><span class='time-meta'><a href="http://twitter.com/mrpollo/statuses/266246774052777984">about 43 minutes ago</a></span> <span class='from-meta'>from <a href="http://itunes.apple.com/us/app/twitter/id409789998?mt=12" rel="nofollow">Twitter for Mac</a></span> <span class="in-reply-to-meta"><a href="http://twitter.com/iguanaz/statuses/266246379607846912" class="reply-to">in reply to iguanaz</a></span></span></li><li><span class='entry-content'><a href="http://twitter.com/NinaTzukino" class="twitter-user">@NinaTzukino</a> No se yo lo tengo en prepago <a href="http://twitter.com/MovistarMX" class="twitter-user">@MovistarMX</a> , no veo por que no funcionen, podemos hacer el intento si te interesan</span> <span class='entry-meta'><span class='time-meta'><a href="http://twitter.com/mrpollo/statuses/266242771105492992">about 59 minutes ago</a></span> <span class='from-meta'>from <a href="http://itunes.apple.com/us/app/twitter/id409789998?mt=12" rel="nofollow">Twitter for Mac</a></span> <span class="in-reply-to-meta"><a href="http://twitter.com/NinaTzukino/statuses/266242287212830720" class="reply-to">in reply to NinaTzukino</a></span></span></li><li><span class='entry-content'>vendo 2 <a href="http://search.twitter.com/search?q=%23iPhone4" class="twitter-hashtag">#iPhone4</a> Unlocked <a href="http://search.twitter.com/search?q=%23Tijuana" class="twitter-hashtag">#Tijuana</a> para cualquier compañía.</span> <span class='entry-meta'><span class='time-meta'><a href="http://twitter.com/mrpollo/statuses/266241895259312128">about 1 hour ago</a></span> <span class='from-meta'>from <a href="http://itunes.apple.com/us/app/twitter/id409789998?mt=12" rel="nofollow">Twitter for Mac</a></span></span></li></ul><div class="follow-button"><a href="http://twitter.com/mrpollo" class="twitter-follow-button" title="Follow @mrpollo" data-lang="en">@mrpollo</a></div></div></div></div>
+</div>
+<!--End Sidebar-->
+<!--Begin Footer-->
+<div style="clear: both;"></div>
+</div>
+<!--[if lt IE 7]>
+	<script defer type="text/javascript" src="http://ramonroche.com/wp-content/themes/Basic/js/pngfix.js"></script>
+<![endif]-->
+<script type="text/javascript" src="http://ramonroche.com/wp-content/themes/Basic/js/superfish.js"></script>
+<script type="text/javascript">
+(function($){
+		$(document).ready(function(){
+			$('ul.superfish').superfish();
+		})
+		})(jQuery);
+</script>
+<script> 
+	var _gaq=[['_setAccount','UA-12452636-1'],['_trackPageview']];
+	(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+	g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+	s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+<div id="footer">
+	&copy; ramonroche.com 2012. All rights reserved.  Powered by  <a href="http://www.wordpress.org">Wordpress</a> | Design By <a href="http://tikafender.com/"> Tika Fender </a> | Layout by  <a href="http://www.elegantthemes.com">Elegant Themes</a>
+</div>
+<script type='text/javascript' src='http://platform.twitter.com/widgets.js?ver=1.0.0'></script>
+<!--End Footer-->
+</body>
+</html>
+
+<!-- Dynamic page generated in 0.448 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2012-11-07 19:16:21 -->
+
+<!-- Compression = gzip -->
+<!-- super cache -->
