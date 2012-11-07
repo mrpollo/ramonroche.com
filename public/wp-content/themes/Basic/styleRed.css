@@ -24,6 +24,7 @@ ul { list-style-image: url(images/bullet.gif); line-height: 24px; }
 .wrapper2Enable { width: 950px; margin: auto; padding: 0px 0px 0px 0px; margin-top: 0px !important; }
 #respond h3 { margin-bottom: 20px; }
 .home-post-wrap { width: 643px; float: left; background-image: url(images/shadow.gif); background-repeat: no-repeat; background-position: bottom; padding-bottom: 40px; margin-bottom: 30px; }
+#disqus_thread{ width: 643px; }
 .home-post-wrap-box { width: 280px; margin-right: 10px; float: left; background-image: url(images/post-bg.gif); background-repeat: repeat-x; border: 1px solid #EBEBEB; margin-bottom: 10px; padding: 10px; }
 .readmore { float: right; margin-top: 10px; }
 .readmore a:link, .readmore a:hover { color: #292929; }
