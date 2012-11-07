@@ -1,27 +1,26 @@
 === Twitter Widget Pro ===
-Contributors: aaroncampbell
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=paypal%40xavisys%2ecom&item_name=Twitter%20Widget%20Pro&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8
+Contributors: aaroncampbell, PeteMall, range, saracannon
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9993090
 Tags: twitter, widget, feed
 Requires at least: 3.0
-Tested up to: 3.3.0
-Stable tag: 2.3.3
+Tested up to: 3.5
+Stable tag: 2.4.1
 
-A widget that properly handles twitter feeds, including parsing @username, #hashtags, and URLs into links. Requires PHP5.
+A widget that properly handles twitter feeds, including parsing @username, #hashtags, and URLs into links.
 
 == Description ==
 
-A widget that properly handles twitter feeds, including @username, #hashtag, and
-link parsing.  It supports displaying profiles images, and even lets you control
-whether to display the time and date of a tweet or how log ago it happened
-(about 5 hours ago, etc).  Requires PHP5.
+A widget that properly handles twitter feeds, including parsing @username,
+#hashtag, and URLs into links.  It supports displaying profiles images, and even
+lets you control whether to display the time and date of a tweet or how log ago
+it happened (about 5 hours ago, etc).
 
-Author: <a href="http://xavisys.com/" title="WordPress development">Aaron D. Campbell</a>
+<a href="http://bluedogwebservices.com/wordpress-plugin/twitter-widget-pro/">Twitter Widget Pro</a>
+Brought to you by <a href="http://ran.ge/" title="WordPress Development">Ran.ge</a>
 
 == Installation ==
 
-1. Verify that you have PHP5, which is required for this plugin.
-1. Upload the whole `twitter-widget-pro` directory to the `/wp-content/plugins/` directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
+1. Use automatic installer.
 1. In WordPress admin go to 'Appearance' -> 'Widgets' and add "Twitter Widget Pro" to one of your widget-ready areas of your site
 
 == Frequently Asked Questions ==
@@ -71,7 +70,7 @@ You can see these put into action by trying something like:
 
 = How can I style it to look nicer? =
 
-There are plenty of CSS classes throughout the HTML that is generated, and you can use those to style things.  Here is some sample CSS that I use with the <a href="essencetheme.com" title="Essence Theme for WordPress">Essence Theme</a>.  You'll need to get the "Everything" sprite from <a href="https://dev.twitter.com/docs/image-resources">Twitter's Image Resources</a>.
+There are plenty of CSS classes throughout the HTML that is generated, and you can use those to style things.  Here is some sample CSS that I use with the <a href="http://essencetheme.com" title="Essence Theme for WordPress">Essence Theme</a>.  You'll need to get the "Everything" sprite from <a href="https://dev.twitter.com/docs/image-resources">Twitter's Image Resources</a>.
 `
 .widget_twitter div {
 	padding:0;
@@ -131,6 +130,36 @@ Aparently the database queries required to display the friends feed was causing 
 
 == Upgrade Notice ==
 
+= 2.4.1 =
+Better support for hashtags with international characters & new German translation
+
+= 2.4.0 =
+Better linking to fix issues with links followed by punctuation plus support for extended characters in hashtags
+
+= 2.3.11 =
+Fix issue with "Include Retweets" not unchecking
+
+= 2.3.10 =
+Update feeds and links to Ran.ge, moves screenshots outside of plugin zip
+
+= 2.3.9 =
+Display dates based on your WordPress timezone setting
+
+= 2.3.8 =
+Fix issue with mixed content warning on HTTPS pages
+
+= 2.3.7 =
+Adds an option to clear update locks, which may fix the updating issue some people are having
+
+= 2.3.6 =
+Small fix for "invalid argument supplied for foreach" error that some people are getting
+
+= 2.3.5 =
+Added HTTP & HTTPS API setting and fixed support forum links
+
+= 2.3.4 =
+Fixed the conflict with Jetpack!  Also a new Arabic translation
+
 = 2.3.3 =
 Fixed issue with updates getting stuck, and add data-lang support for Twitter intents
 
@@ -144,6 +173,50 @@ Fixes an issue with the intents and follow settings not being saved
 Fewer "could not connect to Twitter" messages, new links (reply, retweet, favorite), new follow button, and avatar fixes
 
 == Changelog ==
+
+= 2.4.1 =
+* Make sure hashtags are parsed UTF-8
+* Add German translation
+
+= 2.4.0 =
+* Better linking of URLs, especially handling of punctuation at end of URLs
+* Support for extended characters in hashtags
+* Allow externally linked images to serve via ssl
+* More efficient regex for link parsing
+* Link FTP links
+* Link E-Mail addresses
+* Complete conversion to Range plugin framework from Xavisys framework
+* Added place to check API usage
+
+= 2.3.11 =
+* Fix issue with "Include Retweets" not unchecking
+
+= 2.3.10 =
+* Update feeds and links to Ran.ge
+* Move assets to assets dir
+* Pull in some Range branding to replace Xavisys branding
+
+= 2.3.9 =
+* Display dates based on your WordPress timezone setting
+
+= 2.3.8 =
+* Pass $tweet to widget_twitter_content filter
+* Fix issue with mixed content warning on HTTPS pages
+
+= 2.3.7 =
+* Add option to clear TLC update locks
+
+= 2.3.6 =
+* Make sure we didn't get a string from json_decode()
+
+= 2.3.5 =
+* Added a setting to allow using the Twtter API via HTTP or HTTPS
+* Fixed support forum links
+* Small alignment adjustment on settings page
+
+= 2.3.4 =
+* Added an Arabic translation - Thanks Yaser Maadan - http://www.englize.com
+* Fix conflict with Jetpack by disabling their Twitter widget
 
 = 2.3.3 =
 * Updated TLC to fix issue where updates could get stuck "locked"
@@ -183,7 +256,7 @@ Fewer "could not connect to Twitter" messages, new links (reply, retweet, favori
 * Add the ability to remove the "from" links from displaying - Thanks to <a href="http://yoast.com/">Joost de Valk</a> for the request and the patch!
 
 = 2.2.0 =
-* Now uses the Xavisys WordPress Plugin Framework - http://xavisys.com/xavisys-wordpress-plugin-framework/
+* Now uses the Xavisys WordPress Plugin Framework - http://bluedogwebservices.com/xavisys-wordpress-plugin-framework/
 * Added an options page where you can set defaults that apply to widgets, shortcodes, and php calls (everything can be overridden)
 * Added the Xavisys feed to the dashboard (which can be hidden using the screen options)
 * Fixed problem for people with certain WP configs and PHP 5.0-5.1.x that caused the Services_JSON class to get included twice.
@@ -199,7 +272,7 @@ Fewer "could not connect to Twitter" messages, new links (reply, retweet, favori
 
 = 2.1.2 =
 * Fixed spacing issue that was introduced in 2.1.1
-* Added links to the <a href="http://xavisys.com/support/forum/twitter-widget-pro/">Support Forum</a>
+* Added links to the Support Forum
 
 = 2.1.1 =
 * Added an option to open links in new windows

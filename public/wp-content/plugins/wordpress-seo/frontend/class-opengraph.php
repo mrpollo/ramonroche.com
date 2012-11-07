@@ -1,207 +1,317 @@
-<?php 
+<?php
+/**
+ * @package Frontend
+ *
+ * This code handles the OpenGraph output.
+ */
 
-class WPSEO_OpenGraph {
+/**
+ * Adds the OpenGraph output
+ */
+class WPSEO_OpenGraph extends WPSEO_Frontend {
 
+	/**
+	 * @var array $options Options for the OpenGraph Settings
+	 */
+	var $options = array();
+
+	/**
+	 * Class constructor.
+	 */
 	public function __construct() {
-		$options = get_wpseo_options();
+		$this->options = get_option( 'wpseo_social' );
 
-		add_action( 'wpseo_head', array(&$this, 'opengraph') );
+		add_filter( 'language_attributes', array( $this, 'add_opengraph_namespace' ) );
 
-		$options = get_wpseo_options();
-
-		if ( isset( $options['opengraph'] )  && $options['opengraph'] )
-			add_filter('language_attributes', array(&$this, 'add_opengraph_namespace'));
+		global $fb_ver;
+		if ( isset( $fb_ver ) ) {
+			add_filter( 'fb_meta_tags', array( $this, 'facebook_filter' ), 10, 1 );
+		} else {
+			add_action( 'wpseo_head', array( $this, 'opengraph' ) );
+		}
+		add_action( 'wpseo_head', array( $this, 'wpseo_opengraph_action' ) );
 	}
 
-	public function opengraph() {
-		$options = get_wpseo_options();
+	/**
+	 * Do the opengraph action
+	 */
+	public function wpseo_opengraph_action() {
+		do_action( 'wpseo_opengraph' );
+	}
 
-		global $wp_query, $paged;
-		
+	/**
+	 * Main OpenGraph output.
+	 */
+	public function opengraph() {
 		wp_reset_query();
-		
-		$this->id();
-		$this->title();
+
+		$this->locale();
+		$this->site_owner();
+		$this->og_title();
 		$this->description();
 		$this->url();
 		$this->site_name();
 		$this->type();
 		$this->image();
-		do_action('wpseo_opengraph');
 	}
 
-	public function add_opengraph_namespace( $output ) {
-		return $output . ' xmlns:og="http://opengraphprotocol.org/schema/"';
-	}
-	
-	public function id() {
-		$options = get_wpseo_options();
-		if ( isset($options['fb_adminid']) && trim($options['fb_adminid']) != '' )
-			echo "<meta property='fb:admins' content='".esc_attr( strip_tags( stripslashes( $options['fb_adminid'] ) ) )."'/>\n";
+	/**
+	 * Filter the Facebook plugins metadata
+	 *
+	 * @param array $meta_tags the array to fix.
+	 *
+	 * @return array $meta_tags
+	 */
+	public function facebook_filter( $meta_tags ) {
+		$meta_tags['http://ogp.me/ns#type']  = $this->type( false );
+		$meta_tags['http://ogp.me/ns#title'] = $this->og_title( false );
 
-		if ( isset($options['fb_pageid']) && trim($options['fb_pageid']) != '' )
-			echo "<meta property='fb:page_id' content='".esc_attr( strip_tags( stripslashes( $options['fb_pageid'] ) ) )."'/>\n";
+		// Filter the locale too because the Facebook plugin locale code is not as good as ours.
+		$meta_tags['http://ogp.me/ns#locale'] = $this->locale( false );
 
-		if ( isset($options['fb_appid']) && trim($options['fb_appid']) != '' )
-			echo "<meta property='fb:app_id' content='".esc_attr( strip_tags( stripslashes( $options['fb_appid'] ) ) )."'/>\n";
+		$ogdesc = $this->description( false );
+		if ( !empty( $ogdesc ) )
+			$meta_tags['http://ogp.me/ns#description'] = $ogdesc;
+
+		return $meta_tags;
 	}
-	
-	private function title( ) {
-		global $post, $wp_query;
-		if ( empty($post) && is_singular() ) {
-			$post = $wp_query->get_queried_object();
+
+	/**
+	 * Filter for the namespace, adding the OpenGraph namespace.
+	 *
+	 * @param string $input The input namespace string.
+	 * @return string
+	 */
+	public function add_opengraph_namespace( $input ) {
+		return $input . ' xmlns:og="http://opengraphprotocol.org/schema/"';
+	}
+
+	/**
+	 * Outputs the site owner
+	 */
+	public function site_owner() {
+		if ( isset( $this->options['fbadminapp'] ) && 0 != $this->options['fbadminapp'] ) {
+			echo "<meta property='fb:app_id' content='" . esc_attr( $this->options['fbadminapp'] ) . "'/>\n";
+		} else if ( isset( $this->options['fb_admins'] ) && is_array( $this->options['fb_admins'] ) && ( count( $this->options['fb_admins'] ) > 0 ) ) {
+			$adminstr = '';
+			foreach ( $this->options['fb_admins'] as $admin_id => $admin ) {
+				if ( !empty( $adminstr ) )
+					$adminstr .= ',' . $admin_id;
+				else
+					$adminstr = $admin_id;
+			}
+			echo "<meta property='fb:admins' content='" . esc_attr( $adminstr ) . "'/>\n";
 		}
-
-		$options = get_wpseo_options();
-
-		if ( is_home() && 'posts' == get_option('show_on_front') ) {
-			if ( isset($options['title-home']) && $options['title-home'] != '' )
-				$title = wpseo_replace_vars( $options['title-home'], array() );
-			else
-				$title = get_bloginfo('name');
-		} else if ( is_home() && 'posts' != get_option('show_on_front') ) {
-			// For some reason, in some instances is_home returns true for the front page when page_for_posts is not set.
-			if ( get_option('page_for_posts') == 0 )
-				$post = get_post( get_option( 'page_on_front') );
-			else
-				$post = get_post( get_option( 'page_for_posts' ) );
-			$fixed_title = wpseo_get_value('title');
-			if ( $fixed_title ) { 
-				$title = $fixed_title; 
-			} else {
-				if (isset($options['title-'.$post->post_type]) && !empty($options['title-'.$post->post_type]) )
-					$title = wpseo_replace_vars($options['title-'.$post->post_type], (array) $post );
-				else
-					$title = get_bloginfo('name');
-			}
-		} else if ( is_singular() ) {
-			$fixed_title = wpseo_get_value('title');
-			if ( $fixed_title ) { 
-				$title = $fixed_title; 
-			} else {
-				if (isset($options['title-'.$post->post_type]) && !empty($options['title-'.$post->post_type]) ) {
-					$title = wpseo_replace_vars( $options['title-'.$post->post_type], (array) $post );
-				} else {
-					$title = get_the_title();
-					$title = apply_filters('single_post_title', $title);
-				}
-			}
-		} else if ( is_category() || is_tag() || is_tax() ) {
-			$term = $wp_query->get_queried_object();
-			$title = trim( wpseo_get_term_meta( $term, $term->taxonomy, 'title' ) );
-			if ( !$title || empty($title) ) {
-				if ( isset($options['title-'.$term->taxonomy]) && !empty($options['title-'.$term->taxonomy]) ) {
-					$title = wpseo_replace_vars($options['title-'.$term->taxonomy], (array) $term );
-				} else {
-					if ( is_category() )
-						$title = single_cat_title('', false);
-					else if ( is_tag() )
-						$title = single_tag_title('', false);
-					else if ( is_tax() ) {
-						if ( function_exists('single_term_title') ) {
-							$title = single_term_title('', false);
-						} else {
-							$term = $wp_query->get_queried_object();
-							$title = $term->name;
-						}
-					}
-				}
-			}
-		} else if ( is_search() ) {
-			if ( isset($options['title-search']) && !empty($options['title-search']) )
-				$title = wpseo_replace_vars($options['title-search'], (array) $wp_query->get_queried_object() );	
-			else
-				$title = __('Search for "').get_search_query().'"';
-		} else if ( is_author() ) {
-			$author_id = get_query_var('author');
-			$title = get_the_author_meta('wpseo_title', $author_id);
-			if ( empty($title) ) {
-				if ( isset($options['title-author']) && !empty($options['title-author']) )
-					$title = wpseo_replace_vars($options['title-author'], array() );
-				else
-					$title = get_the_author_meta('display_name', $author_id); 
-			}
-		} else if ( is_post_type_archive() ) {
-			$post_type = get_post_type();
-			if ( isset($options['title-ptarchive-'.$post_type]) && '' != $options['title-ptarchive-'.$post_type] ) {
-				return $options['title-ptarchive-'.$post_type];
-			} else {
-				$post_type_obj = get_post_type_object( $post_type );
-				$title = $post_type_obj->labels->menu_name;
-			}
-		} else if ( is_archive() ) {
-		 	if ( isset($options['title-archive']) && !empty($options['title-archive']) )
-				$title = wpseo_replace_vars($options['title-archive'], array('post_title' => $title) );
-			else if ( is_month() ) 
-				$title = single_month_title(' ', false).' '.__('Archives'); 
-			else if ( is_year() )
-				$title = get_query_var('year').' '.__('Archives'); 
-		} else if ( is_404() ) {
-		 	if ( isset($options['title-404']) && !empty($options['title-404']) )
-				$title = wpseo_replace_vars($options['title-404'], array('post_title' => $title) );
-			else
-				$title = __('Page not found');
-		} 
-		echo "<meta property='og:title' content='".esc_attr( strip_tags( stripslashes( $title ) ) )."'/>\n";
 	}
-		
+
+	/**
+	 * Outputs the SEO title as OpenGraph title.
+	 *
+	 * @param bool $echo Whether or not to echo the output.
+	 * @return string $title
+	 */
+	public function og_title( $echo = true ) {
+		$title = $this->title( '' );
+		if ( $echo )
+			echo "<meta property='og:title' content='" . esc_attr( $title ) . "'/>\n";
+		else
+			return $title;
+	}
+
+	/**
+	 * Outputs the canonical URL as OpenGraph URL, which consolidates likes and shares.
+	 */
 	public function url() {
-		$url = WPSEO_Frontend::canonical( false );
-		echo "<meta property='og:url' content='".esc_attr( $url )."'/>\n";
+		echo "<meta property='og:url' content='" . esc_attr( $this->canonical( false ) ) . "'/>\n";
 	}
-	
-	public function type() {
+
+	/**
+	 * Output the locale, doing some conversions to make sure the proper Facebook locale is outputted.
+	 *
+	 * @param bool $echo Whether to echo or return the locale
+	 *
+	 * @return string $locale
+	 */
+	public function locale( $echo = true ) {
+		$locale = apply_filters( 'wpseo_locale', get_locale() );
+
+		// catch some weird locales served out by WP that are not easily doubled up.
+		$fix_locales = array(
+			'ca'=> 'ca_ES',
+			'en'=> 'en_US',
+			'el'=> 'el_GR',
+			'et'=> 'et_EE',
+			'ja'=> 'ja_JP',
+			'sq'=> 'sq_AL',
+			'uk'=> 'uk_UA',
+			'vi'=> 'vi_VN',
+			'zh'=> 'zh_CN'
+		);
+
+		if ( isset( $fix_locales[$locale] ) )
+			$locale = $fix_locales[$locale];
+
+		// convert locales like "es" to "es_ES", in case that works for the given locale (sometimes it does)
+		if ( strlen( $locale ) == 2 )
+			$locale = strtolower( $locale ) . '_' . strtoupper( $locale );
+
+		// These are the locales FB supports
+		$fb_valid_fb_locales = array(
+			'ca_ES', 'cs_CZ', 'cy_GB', 'da_DK', 'de_DE', 'eu_ES', 'en_PI', 'en_UD', 'ck_US', 'en_US', 'es_LA', 'es_CL', 'es_CO', 'es_ES', 'es_MX',
+			'es_VE', 'fb_FI', 'fi_FI', 'fr_FR', 'gl_ES', 'hu_HU', 'it_IT', 'ja_JP', 'ko_KR', 'nb_NO', 'nn_NO', 'nl_NL', 'pl_PL', 'pt_BR', 'pt_PT',
+			'ro_RO', 'ru_RU', 'sk_SK', 'sl_SI', 'sv_SE', 'th_TH', 'tr_TR', 'ku_TR', 'zh_CN', 'zh_HK', 'zh_TW', 'fb_LT', 'af_ZA', 'sq_AL', 'hy_AM',
+			'az_AZ', 'be_BY', 'bn_IN', 'bs_BA', 'bg_BG', 'hr_HR', 'nl_BE', 'en_GB', 'eo_EO', 'et_EE', 'fo_FO', 'fr_CA', 'ka_GE', 'el_GR', 'gu_IN',
+			'hi_IN', 'is_IS', 'id_ID', 'ga_IE', 'jv_ID', 'kn_IN', 'kk_KZ', 'la_VA', 'lv_LV', 'li_NL', 'lt_LT', 'mk_MK', 'mg_MG', 'ms_MY', 'mt_MT',
+			'mr_IN', 'mn_MN', 'ne_NP', 'pa_IN', 'rm_CH', 'sa_IN', 'sr_RS', 'so_SO', 'sw_KE', 'tl_PH', 'ta_IN', 'tt_RU', 'te_IN', 'ml_IN', 'uk_UA',
+			'uz_UZ', 'vi_VN', 'xh_ZA', 'zu_ZA', 'km_KH', 'tg_TJ', 'ar_AR', 'he_IL', 'ur_PK', 'fa_IR', 'sy_SY', 'yi_DE', 'gn_PY', 'qu_PE', 'ay_BO',
+			'se_NO', 'ps_AF', 'tl_ST'
+		);
+
+		// check to see if the locale is a valid FB one, if not, use en_US as a fallback
+		if ( !in_array( $locale, $fb_valid_fb_locales ) )
+			$locale = 'en_US';
+
+		if ( $echo )
+			echo "<meta property='og:locale' content='" . esc_attr( $locale ) . "'/>\n";
+		else
+			return $locale;
+	}
+
+	/**
+	 * Output the OpenGraph type.
+	 *
+	 * @param boolean $echo Whether to echo or return the type
+	 *
+	 * @return string $type
+	 */
+	public function type( $echo = true ) {
 		if ( is_singular() ) {
-			$type = wpseo_get_value('og_type');
-			if (!$type || $type == '')
+			$type = wpseo_get_value( 'og_type' );
+			if ( !$type || $type == '' )
 				$type = 'article';
 		} else {
 			$type = 'website';
 		}
-		echo "<meta property='og:type' content='".esc_attr( $type )."'/>\n";
+		$type = apply_filters( 'wpseo_opengraph_type', $type );
+
+		if ( $echo )
+			echo "<meta property='og:type' content='" . esc_attr( $type ) . "'/>\n";
+		else
+			return $type;
 	}
-		
-	public function image( $image = '' ) {
-		global $post;
-		// Grab the featured image
+
+	/**
+	 * Output the OpenGraph image elements for all the images within the current post/page.
+	 *
+	 * @return bool
+	 */
+	public function image() {
 		if ( is_singular() ) {
-			if ( empty( $image ) && function_exists('has_post_thumbnail') && has_post_thumbnail( $post->ID ) ) {
-				$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'thumbnail' );
-				if ( $thumbnail )
-					$image = $thumbnail[0];
-			// If that's not there, grab the first attached image
-			} else {
-				$files = get_children( 
-							array( 
-							'post_parent' => $post->ID,
-							'post_type' => 'attachment',
-							'post_mime_type' => 'image',
-							) 
-						);
-			    if ( $files ) {
-			        $keys = array_reverse( array_keys( $files ) );
-			        $image = image_downsize( $keys[0], 'thumbnail' );
-			        $image = $image[0];
-			    }
-			}	
-		} 
-		if ( $image != '' )
-			echo "<meta property='og:image' content='".esc_attr( $image )."'/>\n";
-	}
-		
-	public function description() {
-		$desc = wpseo_get_value('opengraph-description');
-		
-		if ( !$desc )
-			$desc = WPSEO_Frontend::metadesc( false );
+			global $post;
 
-		if ( $desc && $desc != '' )
-			echo "<meta property='og:description' content='".esc_attr( $desc )."'/>\n";
+			$shown_images = array();
+
+			if ( is_front_page() ) {
+				if ( is_front_page() ) {
+					$og_image = '';
+					if ( isset( $this->options['og_frontpage_image'] ) )
+						$og_image = $this->options['og_frontpage_image'];
+
+					$og_image = apply_filters( 'wpseo_opengraph_image', $og_image );
+
+					if ( isset( $og_image ) && $og_image != '' )
+						echo "<meta property='og:image' content='" . esc_attr( $og_image ) . "'/>\n";
+				}
+			}
+
+			if ( function_exists( 'has_post_thumbnail' ) && has_post_thumbnail( $post->ID ) ) {
+				$featured_img = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), apply_filters( 'wpseo_opengraph_image_size', 'medium' ) );
+
+				if ( $featured_img ) {
+					$img = apply_filters( 'wpseo_opengraph_image', $featured_img[0] );
+					echo "<meta property='og:image' content='" . esc_attr( $img ) . "'/>\n";
+					$shown_images[] = $img;
+				}
+			}
+
+			if ( preg_match_all( '/<img [^>]+>/', $post->post_content, $matches ) ) {
+				foreach ( $matches[0] as $img ) {
+					if ( preg_match( '/src=("|\')([^"|\']+)("|\')/', $img, $match ) ) {
+						$img = $match[2];
+
+						if ( in_array( $img, $shown_images ) )
+							continue;
+
+						if ( strpos( $img, 'http' ) !== 0 ) {
+							if ( $img[0] != '/' )
+								continue;
+							$img = get_bloginfo( 'url' ) . $img;
+						}
+
+						if ( $img != esc_url( $img ) )
+							continue;
+
+						$img = apply_filters( 'wpseo_opengraph_image', $img );
+
+						echo "<meta property='og:image' content='" . esc_attr( $img ) . "'/>\n";
+
+						$shown_images[] = $img;
+					}
+				}
+			}
+			if ( count( $shown_images ) > 0 )
+				return true;
+		}
+
+
+		$og_image = '';
+
+		if ( is_front_page() ) {
+			if ( isset( $this->options['og_frontpage_image'] ) )
+				$og_image = $this->options['og_frontpage_image'];
+			if ( isset( $this->options['gp_frontpage_image'] ) )
+				$gp_image = $this->options['gp_frontpage_image'];
+		}
+
+		if ( empty( $og_image ) && isset( $this->options['og_default_image'] ) )
+			$og_image = $this->options['og_default_image'];
+
+		$og_image = apply_filters( 'wpseo_opengraph_image', $og_image );
+
+		if ( isset( $og_image ) && $og_image != '' )
+			echo "<meta property='og:image' content='" . esc_attr( $og_image ) . "'/>\n";
+
+		// @TODO add G+ image stuff
 	}
 
+	/**
+	 * Output the OpenGraph description, specific OG description first, if not, grab the meta description.
+	 *
+	 * @param bool $echo Whether to echo or return the description
+	 * @return string $ogdesc
+	 */
+	public function description( $echo = true ) {
+		$ogdesc = wpseo_get_value( 'opengraph-description' );
+
+		if ( !$ogdesc )
+			$ogdesc = $this->metadesc( false );
+
+		if ( $ogdesc && $ogdesc != '' ) {
+			if ( $echo )
+				echo "<meta property='og:description' content='" . esc_attr( $ogdesc ) . "'/>\n";
+			else
+				return $ogdesc;
+		}
+
+	}
+
+	/**
+	 * Output the site name straight from the blog info.
+	 */
 	public function site_name() {
-		echo "<meta property='og:site_name' content='".esc_attr( get_bloginfo('name') )."'/>\n";
+		echo "<meta property='og:site_name' content='" . esc_attr( get_bloginfo( 'name' ) ) . "'/>\n";
 	}
 }
 
+global $wpseo_og;
 $wpseo_og = new WPSEO_OpenGraph;
